@@ -8,9 +8,9 @@ import java.util.*;
 
 public class MoneyDoorPlugin implements GamePlugin {
 
-    private int[] arr = {-3, -2, -1, 0, 1, 2, 3, 4, 5, 6};
-    private int ONE = 1;
-    private int TEN = 10;
+    private static final int[] arr = {-3, -2, -1, 0, 1, 2, 3, 4, 5, 6};
+    private static final int ONE = 1;
+    private static final int TEN = 10;
 
     // The game framework
     private GameFramework framework = null;
@@ -42,10 +42,9 @@ public class MoneyDoorPlugin implements GamePlugin {
         // For every position i, chooses a random position >= i and swaps it with the value at position i,
         // generating a random permutation of arr
         for(i = 0; i < 10; i++) {
-            int nextIndex;
 
             // Find an index at position >= i to swap to position i
-            while ((nextIndex = random.nextInt(10)) < i);  // choosing a random number in the range [i, 10).
+            int nextIndex = i + random.nextInt(10 - i);  // choosing a random number in the range [i, 10).
 
             // Swap positions i, nextIndex
             int temp = arr[i];
